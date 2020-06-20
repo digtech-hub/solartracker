@@ -108,13 +108,11 @@ bool getDate(int &yearDay, double &hour) {
     Serial.println(secsSince1900);
 
     // now convert NTP time into everyday time:
-    //Serial.print("Unix time = ");
     // Unix time starts on Jan 1 1970. In seconds, that's 2208988800:
     const unsigned long seventyYears = 2208988800UL;
     // subtract seventy years:
     unsigned long epoch = secsSince1900 - seventyYears;
     // print Unix time:
-    //Serial.println(epoch);
     // print the hour, minute and second:
     epoch += 9 * 60 * 60;                    // UTC -> JPN. UTC is the time at Greenwich Meridian (GMT)
 

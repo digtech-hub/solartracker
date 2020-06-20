@@ -1,15 +1,16 @@
-
 #include <time.h>
 #include <EEPROM.h>
 
-/// begin of wifi
 #define STASSID "XXXXXXXX"  // your network SSID (name)
 #define STAPSK  "YYYYYYYY"  // your network password
+#define LATITUDE 35.658;    // ido (e.g. Tokyo tower)
+#define LONGTITUDE 139.745; // keido
 
 //#define MEASURE
 //#define SWITCH_TEST
 //#define MOTOR_TEST
- 
+
+/// begin of wifi
 #include <ESP8266WiFi.h>
 #include <WiFiUdp.h>
 const char * ssid = STASSID;
@@ -330,7 +331,6 @@ class Motor {
   int switchGpio; 
   
   int direction = 0;
-  //int speed = 500;
   int speed = 500;
   bool motorOn = false;
 };
@@ -564,8 +564,8 @@ void setup() {
 void getSunPosition(int yearDay, double hour, double &azimuth, double &altitude) {
   // http://butterflyandsky.fan.coocan.jp/sky2/calc/sunalt.html
   // http://www.es.ris.ac.jp/~nakagawa/met_cal/solar.html
-  double latitude = 34.966; // ido
-    double longitude = 138.4; // keido
+  double latitude = LATITUDE; // ido
+  double longitude = LONGTITUDE; // keido
   double latitudeRad = latitude * M_PI / 180.0;
   double theta = (yearDay - 1) * 2.0 * M_PI / 365.0;
   double delta = 0.006918 - 0.399912 * cos(theta) + 0.070257  * sin(theta) - 0.006758 * cos(2.0 * theta) + 
